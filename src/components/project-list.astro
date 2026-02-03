@@ -7,14 +7,27 @@ import TechStack from "./tech-stack.astro";
 const collection = await getCollection("projects");
 console.log("DEBUG: Loaded projects count:", collection.length);
 
+const priorityMap: Record<string, number> = {
+    "apex-corse": 100,
+    "hackathon-alpine-2024": 90,
+    "hackathon-sicily-2024": 80,
+    "softwares-to-little-pmi": 70,
+    "aptx-app": 60,
+    "vivere-kaffettino": 50,
+    podcast: 40,
+    "qiskit-fall-fest": 30,
+    rubik: 20,
+    torus: 10,
+};
+
 const projects = collection.sort((a, b) => {
-    // 1. Sort by explicit order (highest order first)
-    if (a.data.order !== undefined && b.data.order !== undefined) {
-        return b.data.order - a.data.order;
+    const priorityA = priorityMap[a.slug] || 0;
+    const priorityB = priorityMap[b.slug] || 0;
+
+    // 1. Sort by explicit priority (highest priority first)
+    if (priorityA !== priorityB) {
+        return priorityB - priorityA;
     }
-    // If one has order and the other doesn't, prioritize the one with order
-    if (a.data.order !== undefined) return -1;
-    if (b.data.order !== undefined) return 1;
 
     // 2. Fallback to date (newest first)
     return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();

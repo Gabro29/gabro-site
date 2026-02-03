@@ -25,7 +25,6 @@ export const siteConfig = {
     { text: "Home", href: "/" },
     { text: "Projects", href: "/#projects" },
     { text: "Resume", href: "/resume" },
-    // { text: "Blog", href: "/blog" }, // Coming soon
   ],
 
   footerLinks: [

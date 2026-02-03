@@ -1,9 +1,8 @@
-
 export interface SkillItem {
   name: string;
-  icon: string; 
-} 
- 
+  icon: string;
+}
+
 export interface SkillCategory {
   title: string;
   items: SkillItem[];
@@ -13,11 +12,11 @@ export const skillCategories: SkillCategory[] = [
   {
     title: "Programming Languages",
     items: [
-      { name: "Python", icon: "https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/python-colored.svg" },
-      { name: "Java", icon: "https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/java-colored.svg" },
+      { name: "Python", icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" },
+      { name: "Java", icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" },
       { name: "C", icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" },
       { name: "R", icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/r/r-original.svg" },
-      { name: "SQL", icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" },
+      { name: "SQL", icon: "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_sql.svg" }, 
       { name: "Go", icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/go/go-original.svg" },
     ],
   },
@@ -27,7 +26,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "NumPy", icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg" },
       { name: "Pandas", icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/pandas/pandas-original.svg" },
       { name: "Scikit-learn", icon: "https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" },
-      { name: "Matplotlib", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Matplotlib_icon.svg/2048px-Matplotlib_icon.svg.png" },
+      { name: "Matplotlib", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Matplotlib_icon.svg/2048px-Matplotlib_icon.svg.png" }, 
     ],
   },
   {
@@ -42,11 +41,11 @@ export const skillCategories: SkillCategory[] = [
   {
     title: "Full-Stack",
     items: [
-      { name: "Spring Boot", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Spring_Boot.svg/512px-Spring_Boot.svg.png" },
+      { name: "Spring Boot", icon: "https://www.vectorlogo.zone/logos/springio/springio-icon.svg" }, 
       { name: "FastAPI", icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/fastapi/fastapi-original.svg" },
-      { name: "JavaScript", icon: "https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/javascript-colored.svg" },
-      { name: "HTML5", icon: "https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/html5-colored.svg" },
-      { name: "CSS3", icon: "https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/css3-colored.svg" },
+      { name: "JavaScript", icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" },
+      { name: "HTML5", icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" },
+      { name: "CSS3", icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" },
     ],
   },
   {
@@ -54,7 +53,17 @@ export const skillCategories: SkillCategory[] = [
     items: [
       { name: "Docker", icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" },
       { name: "Linux", icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" },
-      { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" }, // Ho corretto GitHub con Git che è il tool
+      { name: "Git", icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" }, 
+    ],
+  },
+  {
+    title: "Desktop & Embedded",
+    items: [
+      { name: "Qiskit", icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/qiskit.svg" },
+      { name: "Kivy", icon: "https://www.svgrepo.com/show/373726/kivy.svg" },
+      { name: "Tkinter", icon: "https://www.svgrepo.com/show/374119/tcl.svg" }, 
+      { name: "OpenGL", icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/opengl/opengl-original.svg" },
+      { name: "IoT", icon: "https://cdn-icons-png.flaticon.com/512/3659/3659738.png" }, 
     ],
   },
 ];
