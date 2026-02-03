@@ -1,0 +1,73 @@
+---
+interface Props {
+    title: string;
+    subtitle?: string;
+    date?: string;
+    grade?: string;
+    description?: string | string[];
+    techStack?: string[];
+}
+
+const { title, subtitle, date, grade, description, techStack } = Astro.props;
+---
+
+<div
+    class="group border-b border-gray-100 dark:border-gray-900/50 pb-8 last:border-0 last:pb-0"
+>
+    <div
+        class="flex flex-col md:flex-row md:items-baseline md:justify-between mb-2"
+    >
+        <h3 class="text-xl font-medium text-gray-900 dark:text-gray-100">
+            {title}
+            {
+                subtitle && (
+                    <span class="text-blue-600 dark:text-blue-400 font-normal text-base block md:inline md:ml-2 display-block">
+                        — {subtitle}
+                    </span>
+                )
+            }
+            {
+                grade && (
+                    <span class="text-green-600 dark:text-green-400 font-medium text-base block md:inline md:ml-2 display-block">
+                        • {grade}
+                    </span>
+                )
+            }
+        </h3>
+        {
+            date && (
+                <span class="text-xs font-mono text-gray-400 shrink-0 mt-1 md:mt-0">
+                    {date}
+                </span>
+            )
+        }
+    </div>
+
+    {
+        description &&
+            (Array.isArray(description) ? (
+                <ul class="list-disc list-outside ml-4 space-y-1 mt-2 mb-4">
+                    {description.map((item) => (
+                        <li class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed pl-1 max-w-2xl">
+                            {item}
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed max-w-2xl">
+                    {description}
+                </p>
+            ))
+    }
+    {
+        techStack && (
+            <div class="flex flex-wrap gap-2">
+                {techStack.map((tech) => (
+                    <span class="px-2.5 py-1 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 text-xs font-medium rounded-md border border-blue-100 dark:border-blue-900/50">
+                        {tech}
+                    </span>
+                ))}
+            </div>
+        )
+    }
+</div>

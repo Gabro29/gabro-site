@@ -1,0 +1,67 @@
+---
+import "../styles/global.css";
+import { siteConfig } from "../data/site.config";
+import SiteHeader from "../components/site-header.astro";
+import SiteFooter from "../components/site-footer.astro";
+import MobileMenu from "../components/mobile-menu.astro";
+
+const { title } = Astro.props;
+---
+
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title} | {siteConfig.title}</title>
+  </head>
+  <body
+    class="bg-[#0a0a0a] text-gray-100 font-sans antialiased selection:bg-blue-600 selection:text-white"
+  >
+    <SiteHeader />
+
+    <main
+      class="min-h-screen pt-20 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
+    >
+      <slot />
+    </main>
+
+    <SiteFooter />
+
+    <script>
+      // Global Scroll Reveal Observer (Re-triggerable)
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.15, // Slightly higher to ensure it doesn't flicker
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+          } else {
+            // Re-trigger: Remove class when element leaves view
+            entry.target.classList.remove("in-view");
+          }
+        });
+      }, observerOptions);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // Observe all animation classes
+        const animatedElements = document.querySelectorAll(
+          ".fade-in-up, .fade-in-left, .fade-in-right",
+        );
+        animatedElements.forEach((el) => observer.observe(el));
+      });
+    </script>
+    <MobileMenu />
+  </body>
+</html>

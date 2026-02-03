@@ -1,0 +1,26 @@
+---
+import { siteConfig } from "../data/site.config";
+---
+
+<footer class="border-t border-gray-800 py-8 mt-12 text-gray-500">
+    <div
+        class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6 md:gap-0 text-sm font-medium uppercase tracking-widest"
+    >
+        <p>&copy; {new Date().getFullYear()} {siteConfig.author}</p>
+        <div class="flex gap-6">
+            {
+                siteConfig.footerLinks.map((link) => (
+                    <a
+                        href={link.href}
+                        class="hover:text-blue-400 transition-colors"
+                        target={
+                            link.href.startsWith("http") ? "_blank" : "_self"
+                        }
+                    >
+                        {link.text}
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</footer>

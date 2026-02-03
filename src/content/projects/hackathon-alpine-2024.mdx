@@ -1,0 +1,28 @@
+---
+title: "Alpine Climate Data"
+date: "2025-02-15"
+order: 90
+description: "Second Place winner solution for the TELT challenge: a predictive climate model utilizing historical data from 1980-2024."
+technologies: ["Python", "Pandas", "Scikit-learn", "Machine Learning"]
+img: "../../assets/img/alpine-climate-change.png"
+---
+
+## System Architecture
+
+Our solution is a data processing and predictive modeling pipeline designed to forecast environmental trends in the Alpine region.
+
+1.  **Ingestion Layer**: Aggregates heterogeneous datasets (temperature, precipitation, snow cover) spanning 1980–2024.
+2.  **Preprocessing Engine**: Pandas-based cleaning pipeline handling missing values and harmonizing resolution scales across different data sources.
+3.  **Modeling Core**: Scikit-learn regression models optimized to detect long-term warming anomalies.
+4.  **Presentation Layer**: Interactive visualizations highlighting the correlation between historical emissions and local climate shifts.
+
+## Technical Challenges
+
+### Data Sparsity & Noise
+Historical environmental data is often fragmented. We had to devise robust interpolation strategies to fill gaps in the 1980s datasets without introducing synthetic bias.
+
+### Feature Selection
+Isolating the signal from the noise in climate data is difficult due to seasonal variances. We used rolling averages and seasonal decomposition to extract the underlying trend components, proving that the observed warming was statistically significant and not just variance.
+
+## Key Outcomes
+Securing **Second Place** confirmed the validity of our modeling approach. The project demonstrated that lightweight, explainable ML models can effectively communicate complex environmental risks to stakeholders.

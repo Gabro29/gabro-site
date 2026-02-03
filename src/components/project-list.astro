@@ -1,0 +1,117 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { siteConfig } from "../data/site.config";
+import TechStack from "./tech-stack.astro";
+
+const collection = await getCollection("projects");
+console.log("DEBUG: Loaded projects count:", collection.length);
+
+const projects = collection.sort((a, b) => {
+    // 1. Sort by explicit order (highest order first)
+    if (a.data.order !== undefined && b.data.order !== undefined) {
+        return b.data.order - a.data.order;
+    }
+    // If one has order and the other doesn't, prioritize the one with order
+    if (a.data.order !== undefined) return -1;
+    if (b.data.order !== undefined) return 1;
+
+    // 2. Fallback to date (newest first)
+    return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+});
+console.log("DEBUG: Sorted projects successfully");
+---
+
+<section class="py-24" id="projects">
+    <div class="mb-16">
+        <h2
+            class="text-xs font-bold uppercase tracking-widest mb-2 text-gray-500"
+        >
+            {siteConfig.projectsTitle}
+        </h2>
+        <div class="w-full h-px bg-gray-800"></div>
+    </div>
+
+    <ul class="flex flex-col space-y-12 md:space-y-0">
+        {
+            projects.map((project, index) => (
+                <li
+                    class={`group relative border-b border-gray-800 hover:border-blue-500 transition-colors duration-300 ${index % 2 === 0 ? "fade-in-left" : "fade-in-right"}`}
+                >
+                    <a
+                        href={`/projects/${project.slug}`}
+                        class="block py-8 md:py-12 px-2 flex flex-col md:flex-row justify-between items-baseline md:items-center relative z-10"
+                    >
+                        {/* Arrow Indicator (replaces Number) - Desktop Only */}
+                        <div class="hidden md:block w-16 mb-4 md:mb-0 text-blue-500 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="2"
+                                stroke="currentColor"
+                                class="w-6 h-6"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                                />
+                            </svg>
+                        </div>
+
+                        {/* Title */}
+                        <h3 class="text-3xl md:text-6xl font-bold tracking-tight text-gray-200 group-hover:text-white md:group-hover:translate-x-2 transition-all duration-300 ease-out mb-4 md:mb-0">
+                            {project.data.title}
+                        </h3>
+
+                        {/* Mobile Image (Visible inline) */}
+                        <div class="md:hidden w-full h-52 mb-6 rounded-lg overflow-hidden border border-gray-800">
+                            <Image
+                                src={project.data.img}
+                                alt={project.data.title}
+                                width={600}
+                                height={400}
+                                class="w-full h-full object-cover"
+                            />
+                        </div>
+
+                        {/* Spacer */}
+                        <div class="hidden md:block flex-grow mx-8 border-b border-dotted border-gray-700 relative top-[-6px] group-hover:border-blue-500/30 transition-colors" />
+
+                        {/* Meta */}
+                        <div class="w-full md:w-auto mt-0 md:mt-0 flex items-center justify-between md:justify-end gap-6 min-w-[200px] text-gray-400 group-hover:text-blue-400 transition-colors">
+                            {/* Tech Icons */}
+                            <TechStack
+                                technologies={project.data.technologies}
+                            />
+
+                            <div class="flex items-center gap-4">
+                                <span class="text-sm font-medium uppercase tracking-widest">
+                                    {project.data.date}
+                                </span>
+                                <span class="w-2 h-2 rounded-full bg-blue-500 md:opacity-0 md:group-hover:opacity-100 opacity-100 transition-opacity box-shadow-glow" />
+                            </div>
+                        </div>
+                    </a>
+
+                    {/* Desktop Hover Image Reveal */}
+                    <div class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[300px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 hidden lg:block overflow-hidden rotate-[-2deg] group-hover:rotate-0 transition-transform rounded-lg border border-gray-700 bg-gray-900 shadow-2xl">
+                        <Image
+                            src={project.data.img}
+                            alt={project.data.title}
+                            width={600}
+                            class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                        />
+                    </div>
+                </li>
+            ))
+        }
+    </ul>
+</section>
+
+<style>
+    .box-shadow-glow {
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+    }
+</style>

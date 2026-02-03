@@ -1,0 +1,29 @@
+---
+title: "Apex Corse (Formula Student Team — UNIPA)"
+date: "2024"
+order: 100
+description: "Member of Apex Corse, the Formula Student team of the University of Palermo, developing software for telemetry and data analysis."
+technologies: ["Formula Student", "Motorsport Engineering", "Software & Data", "Electronics", "Team Collaboration"]
+img: "../../assets/img/apex-corse.png"
+---
+
+## System Architecture
+
+As part of the IT Department of the University of Palermo's Formula Student team, our core focus is the reliable acquisition and analysis of vehicle telemetry. The architecture consists of three main layers:
+
+-   **Embedded Telemetry**: Real-time data capture from vehicle sensors via CAN bus.
+-   **Data Processing Pipeline**: Scripts to parse and normalize binary logs into readable formats.
+-   **Visualization Tools**: Dashboards for the engineering team to analyze vehicle performance.
+
+We maintain custom tools like **vera** (CAN DBC code generator) and **ephoros** (data logger) to streamline this workflow.
+
+## Technical Challenges
+
+### Real-time Data Synchronization
+Synchronizing high-frequency sensor data (suspension travel, wheel speed) with lower-frequency system logs was a significant hurdle. We implemented a unified timestamping protocol across all embedded nodes to ensuring data integrity during post-run analysis.
+
+### Deterministic Code Generation
+To prevent manual errors in CAN signal definitions, we developed **vera**. This tool parses standard `.dbc` files and auto-generates efficient C code for our microcontrollers, ensuring that the firmware and the analysis tools always share the exact same signal definitions.
+
+## Key Takeaways
+Working in a performance-critical environment highlighted the importance of **reproducibility** and **documentation**. In motorsport, a software bug isn't just an exception—it's lost track time.

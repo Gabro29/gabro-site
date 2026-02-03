@@ -1,0 +1,27 @@
+---
+title: "Hack4Future Sicily (Rainfall & Climate Resilience)"
+date: "2024"
+order: 80
+description: "2nd place winner — Analyzed 20 years of rainfall data to predict drought impacts on Sicilian infrastructure."
+technologies: ["Python", "Pandas", "Jupyter", "Time Series", "Data Visualization"]
+img: "../../assets/img/hack4future-sicily.png"
+---
+
+## System Architecture
+
+The project involved a rigorous data science workflow focused on **SIAS hourly rainfall data (2002–2023)**.
+
+-   **ETL Pipeline**: Automated scripts to parse raw hourly precipitation logs from regional weather stations.
+-   **Analysis Engine**: Statistical modules to calculate peak intensity duration and seasonal distribution shifts.
+-   **Projection Model**: Linear extrapolation logic verified against historical trends to estimate 2050 scenarios.
+
+## Technical Challenges
+
+### Handling High-Frequency Time Series
+Processing hourly data for 20 years across multiple stations resulted in a massive dataset. We optimized our Pandas operations using vectorized functions instead of loops, reducing processing time from minutes to seconds.
+
+### Correlating Disparate Metrics
+The core challenge was linking rainfall deficits (meteorological data) to real-world infrastructure stress (engineering data). We created a "stress index" that normalized both datasets, allowing us to visualize exactly when and where water infrastructure would fail under predicted drought conditions.
+
+## Key Findings
+Our analysis revealed a shift toward **extremes**: wetter summers and drier winters, with torrential events becoming shorter but more intense. This creates a "double hazard" where water is scarce when needed, but overwhelming during storms, overwhelming current storage capacities.

@@ -1,0 +1,45 @@
+---
+import { Image } from "astro:assets";
+import { siteConfig } from "../data/site.config";
+---
+
+<section class="pt-12 pb-32">
+    <div
+        class="flex flex-col-reverse md:flex-row items-center gap-12 md:gap-20"
+    >
+        <!-- Text Side -->
+        <div class="flex-1">
+            <span
+                class="block text-blue-500 font-mono text-sm tracking-widest mb-4"
+            >
+                {siteConfig.hero.tagline}
+            </span>
+            <h1
+                class="text-5xl md:text-7xl font-bold tracking-tighter leading-[1.1] mb-8 text-white"
+            >
+                {siteConfig.hero.title}<br />
+                {siteConfig.hero.subtitle}<span class="text-blue-500"></span>
+            </h1>
+            <p
+                class="text-xl text-gray-400 leading-relaxed max-w-xl text-justify-last"
+            >
+                {siteConfig.hero.description}
+            </p>
+        </div>
+
+        <!-- Image Side -->
+        <div class="relative w-full md:w-[400px] flex-shrink-0 group">
+            <div
+                class="absolute inset-0 bg-blue-600 rounded-2xl transform translate-x-4 translate-y-4 transition-transform group-hover:translate-x-2 group-hover:translate-y-2"
+            >
+            </div>
+            <Image
+                src={siteConfig.avatar}
+                alt={siteConfig.author}
+                width={400}
+                height={400}
+                class="relative rounded-2xl grayscale-0 md:grayscale md:group-hover:grayscale-0 transition-all duration-500 z-10 border-2 border-gray-800"
+            />
+        </div>
+    </div>
+</section>

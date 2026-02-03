@@ -1,0 +1,33 @@
+---
+title: "Unfolding the Billiard (Billiard → Torus)"
+date: "2024"
+order: 10
+description: "A visualization of the 'unfolding' method in dynamical systems, mapping 2D billiard trajectories onto a 3D torus."
+technologies: ["Python", "Matplotlib", "MathJax", "Dynamical Systems", "Visual Math"]
+img: "../../assets/img/billiard-torus.png"
+---
+
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+## The Inspiration
+While reading a paper on dynamical systems (*Menini, Possieri, Tornambè*), I encountered the concept of "unfolding" a billiard table. Instead of calculating complex reflections at every wall, you can "mirror" the world and treat the ball's path as a straight line.
+
+## Visual Gallery
+The simulation demonstrates two distinct regimes:
+-   **Periodic Motion**: The ball retraces its path perfectly, creating a closed loop.
+-   **Dense Motion**: The trajectory never repeats, eventually painting the entire surface of the torus.
+
+## The Math
+To visualize this, I mapped the flat 2D billiard coordinates \((x,y)\) onto a 3D torus using the parametric embedding:
+
+\[
+\begin{cases}
+X = (R + r\cos\omega)\cos\varphi \\
+Y = (R + r\cos\omega)\sin\varphi \\
+Z = r\sin\omega
+\end{cases}
+\]
+
+This allows us to see how a "straight line" in the unfolded plane wraps beautifully around the 3D donut shape.

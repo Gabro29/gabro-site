@@ -1,0 +1,52 @@
+---
+import { skillCategories } from "../data/skills";
+
+interface Props {
+    skills: string[];
+}
+
+const { skills } = Astro.props;
+
+// Helper to find skill icon
+const getSkillData = (skillName: string) => {
+    for (const category of skillCategories) {
+        const found = category.items.find(
+            (item) => item.name.toLowerCase() === skillName.toLowerCase(),
+        );
+        if (found) return found;
+    }
+    return null;
+};
+---
+
+<div class="flex flex-wrap gap-4">
+    {
+        skills.map((skillName) => {
+            const skillData = getSkillData(skillName);
+
+            if (skillData) {
+                return (
+                    <div class="flex flex-col items-center gap-2 group w-20">
+                        <div class="w-12 h-12 p-2.5 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-100 dark:border-gray-800 group-hover:border-blue-200 dark:group-hover:border-blue-900/50 group-hover:bg-blue-50/30 dark:group-hover:bg-blue-900/10 transition-all duration-300 shadow-sm flex items-center justify-center">
+                            <img
+                                src={skillData.icon}
+                                alt={skillData.name}
+                                class="w-full h-full object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                            />
+                        </div>
+                        <span class="text-[10px] uppercase font-medium tracking-wider text-gray-400 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors text-center">
+                            {skillData.name}
+                        </span>
+                    </div>
+                );
+            }
+
+            // Fallback for skills without icons
+            return (
+                <span class="px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-xs font-medium rounded-lg text-gray-600 dark:text-gray-300 border border-transparent hover:border-gray-200 dark:hover:border-gray-700 transition-colors">
+                    {skillName}
+                </span>
+            );
+        })
+    }
+</div>

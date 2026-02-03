@@ -1,0 +1,47 @@
+---
+import { siteConfig } from "../data/site.config";
+---
+
+<!-- Mobile Overlay moved to body root execution context to avoid backdrop-filter trap -->
+<div
+    id="mobile-menu"
+    class="fixed inset-0 bg-[#0a0a0a] z-40 flex flex-col items-center justify-center space-y-8 opacity-0 pointer-events-none transition-all duration-300"
+>
+    {
+        siteConfig.navLinks.map((link) => (
+            <a
+                href={link.href}
+                class="text-4xl font-bold text-white hover:text-blue-500 transition-colors"
+            >
+                {link.text}
+            </a>
+        ))
+    }
+</div>
+
+<script>
+    const btn = document.getElementById("menu-toggle");
+    const menu = document.getElementById("mobile-menu");
+
+    btn?.addEventListener("click", () => {
+        if (!menu) return;
+        const isClosed = menu.classList.contains("opacity-0");
+        if (isClosed) {
+            menu.classList.remove("opacity-0", "pointer-events-none");
+            document.body.style.overflow = "hidden"; // Scroll Lock
+        } else {
+            menu.classList.add("opacity-0", "pointer-events-none");
+            document.body.style.overflow = ""; // Unlock
+        }
+    });
+
+    // Close menu when clicking a link
+    if (menu) {
+        menu.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+                menu.classList.add("opacity-0", "pointer-events-none");
+                document.body.style.overflow = ""; // Unlock
+            });
+        });
+    }
+</script>

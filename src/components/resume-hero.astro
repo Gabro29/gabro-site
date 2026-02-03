@@ -1,0 +1,64 @@
+---
+import resumeImage from "../assets/img/resume-pic.png";
+---
+
+<!-- Hero Section: Stacked on Mobile, Split on Desktop -->
+<section class="w-full bg-white dark:bg-gray-950 mb-16 md:mb-24">
+    <div
+        class="flex flex-col md:flex-row items-stretch min-h-[50vh] md:min-h-[60vh]"
+    >
+        <!-- 1. Text Content (Order 2 on Mobile, Order 1 on Desktop) -->
+        <div
+            class="order-2 md:order-1 w-full md:w-1/2 flex flex-col justify-center p-8 md:p-20 lg:p-24"
+        >
+            <div class="max-w-xl">
+
+                <h1
+                    class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-8 tracking-tight"
+                >
+                    Resume<span class="text-blue-600 dark:text-blue-500">.</span
+                    >
+                </h1>
+                <p
+                    class="text-lg text-gray-600 dark:text-gray-400 mb-10 leading-relaxed"
+                >
+                    Detailed experience, education history, and technical
+                    skillset. Download the full PDF version for offline viewing or just scroll down.
+                </p>
+
+                <a
+                    href="/assets/Gabriele_Lo_Cascio.pdf"
+                    download
+                    class="inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-xl text-white bg-gray-900 hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl group"
+                >
+                    Download PDF
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                        ></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- 2. Image (Order 1 on Mobile, Order 2 on Desktop) -->
+        <div
+            class="order-1 md:order-2 w-full md:w-1/2 relative min-h-[40vh] md:min-h-auto"
+        >
+            <img
+                src={resumeImage.src}
+                alt="Portrait"
+                class="absolute inset-0 w-full h-full object-cover object-top"
+            />
+        </div>
+    </div>
+</section>

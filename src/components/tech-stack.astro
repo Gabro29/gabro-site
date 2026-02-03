@@ -1,0 +1,32 @@
+---
+import { skillCategories } from "../data/skills";
+
+interface Props {
+    technologies?: string[];
+}
+
+const { technologies } = Astro.props;
+---
+
+<div class="flex gap-3 mr-4">
+    {
+        technologies?.map((techName) => {
+            const category = skillCategories.find((cat) =>
+                cat.items.some((item) => item.name === techName),
+            );
+            const skill = category?.items.find(
+                (item) => item.name === techName,
+            );
+            if (!skill) return null;
+            return (
+                <div class="relative w-6 h-6 md:w-8 md:h-8" title={skill.name}>
+                    <img
+                        src={skill.icon}
+                        alt={skill.name}
+                        class="w-full h-full object-contain grayscale-0 opacity-100 md:grayscale md:opacity-50 md:group-hover:grayscale-0 md:group-hover:opacity-100 transition-all duration-500"
+                    />
+                </div>
+            );
+        })
+    }
+</div>

@@ -1,0 +1,129 @@
+---
+import BaseLayout from "../layouts/base-layout.astro";
+import CVItem from "../components/cv-item.astro";
+import SkillGrid from "../components/skill-grid.astro";
+import { cvData } from "../data/cv";
+import ResumeHero from "../components/resume-hero.astro";
+
+const title = "Resume";
+const description = "Experience, Education, and Skills.";
+---
+
+<BaseLayout title={title} description={description}>
+    <ResumeHero />
+
+    <section class="max-w-3xl mx-auto px-6 pb-20 md:pb-32">
+        <!-- Experience -->
+        <div class="mb-20">
+            <h2
+                class="text-2xl font-bold mb-8 border-b pb-4 dark:border-gray-800 flex items-center gap-3"
+            >
+                <span class="w-2 h-8 bg-blue-600 rounded-sm"></span>
+                Experience
+            </h2>
+            <div class="space-y-0">
+                {
+                    cvData.experiences.map((exp) => (
+                        <CVItem
+                            title={exp.role}
+                            subtitle={exp.company}
+                            date={exp.date}
+                            description={exp.description}
+                        />
+                    ))
+                }
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="mb-20">
+            <h2
+                class="text-2xl font-bold mb-8 border-b pb-4 dark:border-gray-800 flex items-center gap-3"
+            >
+                <span class="w-2 h-8 bg-blue-600 rounded-sm"></span>
+                Education
+            </h2>
+            <div class="space-y-0">
+                {
+                    cvData.education.map((edu) => (
+                        <CVItem
+                            title={edu.degree}
+                            subtitle={edu.institution}
+                            date={edu.date}
+                            grade={edu.grade}
+                            techStack={edu.coursework}
+                        />
+                    ))
+                }
+            </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="mb-20">
+            <h2
+                class="text-2xl font-bold mb-8 border-b pb-4 dark:border-gray-800 flex items-center gap-3"
+            >
+                <span class="w-2 h-8 bg-blue-600 rounded-sm"></span>
+                Projects
+            </h2>
+            <div class="space-y-0">
+                {
+                    cvData.projects.map((project) => (
+                        <CVItem
+                            title={project.title}
+                            subtitle={project.role}
+                            date={project.date}
+                            description={project.description}
+                            techStack={project.techStack}
+                        />
+                    ))
+                }
+            </div>
+        </div>
+
+        <!-- Awards -->
+        <div class="mb-20">
+            <h2
+                class="text-2xl font-bold mb-8 border-b pb-4 dark:border-gray-800 flex items-center gap-3"
+            >
+                <span class="w-2 h-8 bg-blue-600 rounded-sm"></span>
+                Awards
+            </h2>
+            <div class="space-y-0">
+                {
+                    cvData.awards.map((award) => (
+                        <CVItem
+                            title={award.title}
+                            subtitle={award.competition}
+                            date={award.date}
+                            description={award.description}
+                            techStack={award.techStack}
+                        />
+                    ))
+                }
+            </div>
+        </div>
+
+        <!-- Skills -->
+        <div>
+            <h2
+                class="text-2xl font-bold mb-10 border-b pb-4 dark:border-gray-800 flex items-center gap-3"
+            >
+                <span class="w-2 h-8 bg-blue-600 rounded-sm"></span>
+                Skills
+            </h2>
+            <div class="space-y-12">
+                {
+                    cvData.skills.map((category) => (
+                        <div>
+                            <h3 class="text-sm uppercase tracking-widest text-gray-500 font-semibold mb-6 flex items-center gap-2">
+                                {category.category}
+                            </h3>
+                            <SkillGrid skills={category.skills} />
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+</BaseLayout>
